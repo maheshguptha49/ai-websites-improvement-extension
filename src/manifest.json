@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Ai website checker",
+  "description": "Website analysis tool for SEO and UI and UX improvements",
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/seo.png",
+      "48": "icons/seo.png",
+      "128": "icons/seo.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
