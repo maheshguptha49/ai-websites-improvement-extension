@@ -3,7 +3,7 @@ export enum WorkerEvents {
   FETCH_SITEMAP = "FETCH_SITEMAP",
   START_SEO_ANALYSIS = "START_SEO_ANALYSIS",
 }
-export enum IssueType {
+export enum SeoTechIssueType {
   SITEMAP = "SITEMAP",
   TITLE = "TITLE",
   META_TAG = "META_TAG",

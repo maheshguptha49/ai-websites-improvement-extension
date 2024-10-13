@@ -6,7 +6,7 @@ import { analyzeMetaTags } from "./seoAnalysis/metaTag";
 import { analyzeOGTags } from "./seoAnalysis/ogTag";
 import { analyzeStructuredDataBasic } from "./seoAnalysis/structuredDataanalysis";
 import { checkTitleTags } from "./seoAnalysis/titleCheck";
-import { IssueType, WorkerEvents } from "./types";
+import { SeoTechIssueType, WorkerEvents } from "./types";
 console.log("content.js file running ");
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === WorkerEvents.START_SEO_ANALYSIS) {
@@ -20,15 +20,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 const collectIssues = async (sendResponse: (response?: any) => void) => {
   console.log("in collectIssues");
-  const issues: Record<IssueType, Issue[]> = {
-    [IssueType.SITEMAP]: [],
-    [IssueType.TITLE]: checkTitleTags(),
-    [IssueType.CANONICAL]: analyzeCanonicalTags(),
-    [IssueType.META_TAG]: analyzeMetaTags(),
-    [IssueType.STRUCTURED_DATA]: analyzeStructuredDataBasic(),
-    [IssueType.IMAGE_ALT_TEXT]: analyzeImages(),
-    [IssueType.H1_AND_ANCHOR_TEXT]: await checkHeadingAndAnchorText(),
-    [IssueType.OG_IMAGE]: await analyzeOGTags(),
+  const issues: Record<SeoTechIssueType, Issue[]> = {
+    [SeoTechIssueType.SITEMAP]: [],
+    [SeoTechIssueType.TITLE]: checkTitleTags(),
+    [SeoTechIssueType.CANONICAL]: analyzeCanonicalTags(),
+    [SeoTechIssueType.META_TAG]: analyzeMetaTags(),
+    [SeoTechIssueType.STRUCTURED_DATA]: analyzeStructuredDataBasic(),
+    [SeoTechIssueType.IMAGE_ALT_TEXT]: analyzeImages(),
+    [SeoTechIssueType.H1_AND_ANCHOR_TEXT]: await checkHeadingAndAnchorText(),
+    [SeoTechIssueType.OG_IMAGE]: await analyzeOGTags(),
   };
   console.log(issues, "issues in content.ts");
   const res = await analyzeSitemap();
