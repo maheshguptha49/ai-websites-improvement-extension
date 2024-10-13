@@ -11,8 +11,8 @@ export function checkTitleTags(): Issue[] {
   } else if (titleElements.length > 1) {
     issues.push({ issue: "Multiple <title> tags found.", level: 1 });
   } else {
-    const title = titleElements[0].textContent || "";
-    const titleLength = title.length;
+    const title = titleElements[0].textContent;
+    const titleLength = title?.length || 0;
 
     // Check the length of the title
     if (titleLength < 50 || titleLength > 60) {
